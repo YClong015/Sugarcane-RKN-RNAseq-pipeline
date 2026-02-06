@@ -1,1 +1,1 @@
-# Sugarcane-rkn-rnaseq-pipeline
+# Sugarcane-RKN-RNAseq-pipeline
