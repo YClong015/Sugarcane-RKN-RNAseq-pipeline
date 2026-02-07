@@ -1,1 +1,8 @@
-
+# Put ONE sample_id per line.
+# Use the SAME sample_id used in merged/clean FASTQ filenames.
+# Example:
+# Q208_7d_C_1
+# Q208_7d_RKN_1
+#
+# IMPORTANT:
+# - Do NOT include RLN samples (we exclude SES208_12w_RLN_3).
