@@ -3,8 +3,6 @@ set -euo pipefail
 source scripts/utils.sh
 load_cfg
 
-# This mirrors your original logic.
-# If your flowcell token differs, pass it as an argument.
 FLOWCELL_TOKEN="${1:-_HLCH2DRXY_}"
 
 ensure_dir "$MERGED_DIR"
