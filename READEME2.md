@@ -30,28 +30,28 @@ functional enrichment.
 
 ```mermaid
 graph TD
-    subgraph Pre-processing
-    Raw[Raw FastQ] --> QC1[FastQC / MultiQC]
-    QC1 --> Trim[Fastp: Trimming & Adapter Removal]
-    Trim --> QC2[Clean Data QC]
-    end
+  subgraph Preprocessing
+    Raw[Raw FASTQ] --> QC1[FastQC and MultiQC]
+    QC1 --> Trim[fastp trimming and adapters]
+    Trim --> QC2[QC after trimming]
+  end
 
-    subgraph Decontamination [Key Step: Smut Removal]
-    QC2 --> Filter{Bowtie2: Smut Index}
-    Filter -- Aligned Reads --> Smut[Discard Smut Contamination]
-    Filter -- Unaligned Reads --> Clean[Clean Sugarcane Reads]
-    end
+  subgraph Decontamination
+    QC2 --> Filter{Bowtie2 smut index}
+    Filter -- aligned --> Smut[discard smut reads]
+    Filter -- unaligned --> Clean[clean sugarcane reads]
+  end
 
-    subgraph Quantification
-    Clean --> Salmon[Salmon Quant (R570)]
-    Salmon --> Counts[Quant.sf / Count Matrix]
-    end
+  subgraph Quantification
+    Clean --> Salmon[Salmon quant R570]
+    Salmon --> Counts[quant.sf and count matrix]
+  end
 
-    subgraph Analysis
-    Counts --> R[R: DESeq2 Analysis]
-    R --> DEGs[Differentially Expressed Genes]
-    DEGs --> Enrich[GO/KEGG Enrichment]
-    end
+  subgraph Analysis
+    Counts --> R[DESeq2 in R]
+    R --> DEGs[DEGs]
+    DEGs --> Enrich[GO and KEGG enrichment]
+  end
 ```
 
 ---
@@ -121,6 +121,13 @@ Create a plain text file listing sample IDs (one per line). IDs must match FASTQ
 
 **File location:** `08_deseq2_R570/samples_rkn_only.txt`
 
+Example:
+
+```text
+Q208_12w_C_1
+Q208_12w_RKN_1
+SES208_12w_C_1
+```
 
 ### 2) Metadata File (`metadata.csv`)
 
