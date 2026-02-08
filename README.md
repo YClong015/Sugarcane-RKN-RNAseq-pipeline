@@ -1,17 +1,6 @@
 # Sugarcane RKN RNA-seq pipeline (R570 reference; RKN-only sample list)
 
-This repo is an **repo-friendly skeleton** based on your original
-scripts. It enforces these choices:
-
-- Use **R570** reference naming in output dirs:
-  - `07_salmon_R570/`
-  - `08_deseq2_R570/`
-- Use **one canonical sample list**:
-  - `08_deseq2_R570/samples_rkn_only.txt`
-- Remove the mislabeled sample:
-  - `SES208_12w_RLN_3` (treated as RLN in filenames; must be excluded)
-
-Your original scripts are preserved verbatim for provenance:
+Original scripts are preserved verbatim for provenance:
 - `scripts/original/`
 - `slurm/original/`
 
