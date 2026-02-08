@@ -86,8 +86,8 @@ graph TD
 ### 1) Clone Repository
 
 ```bash
-git clone https://github.com/YClong015/Sugarcane-RNK-RNAseq-pipeline.git
-cd Sugarcane-RNK-RNAseq-pipeline
+git clone https://github.com/YClong015/Sugarcane-RKN-RNAseq-pipeline.git
+cd Sugarcane-RKN-RNAseq-pipeline
 ```
 
 ### 2) Create Conda Environment
@@ -104,7 +104,7 @@ Dependencies typically include: `fastqc`, `multiqc`, `fastp`, `bowtie2`, `salmon
 
 ### 3) Configuration
 
-Copy the template and edit `config.env` to set file paths (genomes, indices, output directories).
+Copy the example config and edit it to set paths (genomes, indices, output directories).
 
 ```bash
 bash scripts/99_copy_config_example.sh
@@ -119,7 +119,11 @@ nano config/config.env
 
 Create a plain text file listing sample IDs (one per line). IDs must match FASTQ prefixes used by the scripts.
 
-**File location:** `samples/samples_rkn_only.txt`
+**Template:** `samples/samples_rkn_only.txt`
+
+The pipeline uses `$SAMPLES_RKN_ONLY_TXT` (defined in `config/config.env`).
+Run `bash scripts/02_prepare_samples_rkn_only.sh` once to copy the
+template into `$SAMPLES_RKN_ONLY_TXT`, then edit that file.
 
 Example:
 
@@ -131,7 +135,7 @@ SES208_12w_C_1
 
 ### 2) Metadata File (`metadata.csv`)
 
-Create `metadata.csv` in the project root. This defines the experimental design for DESeq2.
+Provide `metadata.csv` in the project root (a template is included). This defines the experimental design for DESeq2.
 
 Example:
 
@@ -156,6 +160,9 @@ Run scripts in numerical order.
 bash scripts/00_init_dirs.sh
 bash scripts/02_prepare_samples_rkn_only.sh
 
+# Merge lanes into ${MERGED_DIR} (skip if already merged)
+bash scripts/03_merge_lanes_rkn_only.sh
+
 # Run QC and Trimming
 bash scripts/04_qc_raw.sh
 bash scripts/05_trim_fastp.sh
@@ -172,7 +179,9 @@ Unmapped reads (Sugarcane/RKN) are preserved for downstream analysis.
 bash scripts/07_build_bowtie2_index.sh
 
 # 2) Submit SLURM Array Job (array size N computed from sample list)
-N=$(wc -l < samples/samples_rkn_only.txt)
+source scripts/utils.sh
+load_cfg
+N=$(wc -l < "$SAMPLES_RKN_ONLY_TXT")
 mkdir -p slurm_logs
 sbatch --array=1-"$N" slurm/rm_smut_array.sbatch
 ```
