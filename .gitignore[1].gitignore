@@ -1,0 +1,5 @@
+# Local configuration (do not commit machine-specific paths)
+config/config.env
+
+# Scheduler outputs
+slurm_logs/
