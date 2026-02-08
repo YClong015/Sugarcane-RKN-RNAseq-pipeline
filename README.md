@@ -73,7 +73,7 @@ graph TD
 │   └── ...                        # Helper scripts for metadata/tx2gene
 ├── slurm/
 │   └── rm_smut_array.sbatch       # SLURM array script for Smut removal
-├── 08_deseq2_R570/
+├── samples/
 │   └── samples_rkn_only.txt       # Input sample ID list
 ├── metadata.csv                   # Experimental design for R analysis
 └── environment.yml                # Conda environment specification
@@ -119,7 +119,7 @@ nano config/config.env
 
 Create a plain text file listing sample IDs (one per line). IDs must match FASTQ prefixes used by the scripts.
 
-**File location:** `08_deseq2_R570/samples_rkn_only.txt`
+**File location:** `samples/samples_rkn_only.txt`
 
 Example:
 
@@ -172,7 +172,7 @@ Unmapped reads (Sugarcane/RKN) are preserved for downstream analysis.
 bash scripts/07_build_bowtie2_index.sh
 
 # 2) Submit SLURM Array Job (array size N computed from sample list)
-N=$(wc -l < 08_deseq2_R570/samples_rkn_only.txt)
+N=$(wc -l < samples/samples_rkn_only.txt)
 mkdir -p slurm_logs
 sbatch --array=1-"$N" slurm/rm_smut_array.sbatch
 ```
