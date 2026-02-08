@@ -14,17 +14,23 @@ if [[ ! -f "$SAMPLES_RKN_ONLY_TXT" ]]; then
   exit 0
 fi
 
-# Sanitize: drop RLN lines, comments, empty lines; keep first column only.
 tmp="${SAMPLES_RKN_ONLY_TXT}.tmp"
-grep -v -E 'RLN|SES208_12w_RLN_3' "$SAMPLES_RKN_ONLY_TXT" \
-  | grep -v -E '^[[:space:]]*#' \
+
+# Drop comments + empty lines; keep first column only.
+grep -v -E '^[[:space:]]*#' "$SAMPLES_RKN_ONLY_TXT" \
   | awk 'NF > 0 { print $1 }' > "$tmp"
+
+# Optional filtering (configured in config.env).
+if [[ -n "${EXCLUDE_SAMPLE_REGEX:-}" ]]; then
+  grep -v -E "$EXCLUDE_SAMPLE_REGEX" "$tmp" > "${tmp}.f"
+  mv "${tmp}.f" "$tmp"
+fi
 
 mv "$tmp" "$SAMPLES_RKN_ONLY_TXT"
 
-if grep -q -E 'RLN|SES208_12w_RLN_3' "$SAMPLES_RKN_ONLY_TXT"; then
-  die "RLN still present in $SAMPLES_RKN_ONLY_TXT"
-fi
-
 note "Sanitized: $SAMPLES_RKN_ONLY_TXT"
 wc -l "$SAMPLES_RKN_ONLY_TXT" || true
+
+
+
+
