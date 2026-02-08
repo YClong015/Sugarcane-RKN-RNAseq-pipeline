@@ -1,8 +1,17 @@
 # Sugarcane RKN RNA-seq pipeline (R570 reference; RKN-only sample list)
 
-Original scripts are preserved verbatim for provenance:
-- `scripts/original/`
-- `slurm/original/`
+## Project Overview
+
+This is a reproducible bioinformatics pipeline designed for analyzing **Sugarcane (*Saccharum* spp. hybrid)** RNA-seq data, specifically focusing on the interaction with **Root-Knot Nematodes (RKN)**.
+
+A critical feature of this workflow is a rigorous **decontamination step**: it specifically targets and removes fungal reads from *Sporisorium scitamineum* (the causal agent of Sugarcane Smut) before quantification. This ensures that the downstream gene expression analysis accurately reflects the plant-nematode interaction without fungal noise.
+
+### Key Features
+* **HPC-Optimized**: Designed for SLURM-based clusters using array jobs for efficient parallel processing.
+* **Reproducible Environment**: Fully defined Conda environment (`environment.yml`).
+* **Smut Decontamination**: Filters out *S. scitamineum* reads using Bowtie2 alignment.
+* **Accurate Quantification**: Uses **Salmon** for transcript-level quantification against the R570 genome.
+* **Integrated R Workflow**: Includes scripts for DESeq2 (Differential Expression) and ClusterProfiler (Enrichment).
 
 ## Setup
 
