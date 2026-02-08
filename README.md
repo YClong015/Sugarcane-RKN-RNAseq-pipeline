@@ -140,7 +140,7 @@ sample_id,genotype,time_point,treatment,replicate
 Q208_12w_C_1,Q208,12w,Control,1
 Q208_12w_C_2,Q208,12w,Control,2
 Q208_12w_RKN_1,Q208,12w,RKN,1
-Q208_7d_C_2,Q208,1w,Control,2
+Q208_7d_C_2,Q208,7d,Control,2
 ```
 
 ---
