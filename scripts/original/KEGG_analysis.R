@@ -4,9 +4,7 @@ suppressWarnings(suppressMessages({
   }
 }))
 
-# ----------------------------
-# USER PATHS (ALL EXPLICIT)
-# ----------------------------
+# USER PATHS
 BASE_DIR <- "/QRISdata/Q9062"
 
 ANN_PATH <- file.path(BASE_DIR, "06_ref", "gene_annotation_R570P14.tsv")
@@ -29,9 +27,7 @@ MIN_GS <- 10
 MAX_GS <- 5000
 MIN_K <- 2
 
-# ----------------------------
 # HELPERS
-# ----------------------------
 split_ids <- function(x) {
   x <- gsub("[;|]", ",", x)
   x <- gsub("[[:space:]]+", ",", x)
@@ -174,9 +170,7 @@ plot_bar <- function(df, out_png, top_n, title) {
   ggplot2::ggsave(out_png, p, width = 8, height = 6, dpi = 160)
 }
 
-# ----------------------------
 # MAIN
-# ----------------------------
 cat("Using paths:\n")
 cat("  ANN:", ANN_PATH, "\n")
 cat("  KO2PW:", KO2PW_PATH, "\n")
