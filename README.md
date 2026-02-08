@@ -1,6 +1,6 @@
 # Sugarcane RKN RNA-seq pipeline (R570 reference; RKN-only sample list)
 
-This repo is an **English, repo-friendly skeleton** based on your original
+This repo is an **repo-friendly skeleton** based on your original
 scripts. It enforces these choices:
 
 - Use **R570** reference naming in output dirs:
