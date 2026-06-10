@@ -210,7 +210,7 @@ bash scripts/11_make_sample_metadata_from_list.sh
 
 ---
 
-## 📊 Downstream Analysis (R)
+## Downstream Analysis (R)
 
 The R analysis workflow performs:
 
