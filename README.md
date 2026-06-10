@@ -9,7 +9,7 @@ in plant–nematode expression signals.
 
 ---
 
-## 🧬 Project Overview
+##  Project Overview
 
 This workflow is designed to run on SLURM-based HPC clusters and supports parallel processing via array jobs.
 It includes a fully defined Conda environment and an integrated R workflow for differential expression and
@@ -26,7 +26,7 @@ functional enrichment.
 
 ---
 
-## 📊 Pipeline Workflow
+## Pipeline Workflow
 
 ```mermaid
 graph TD
@@ -56,7 +56,7 @@ graph TD
 
 ---
 
-## 📂 Directory Structure
+## Directory Structure
 
 ```text
 .
@@ -81,7 +81,7 @@ graph TD
 
 ---
 
-## 🛠️ Installation & Setup
+## Installation & Setup
 
 ### 1) Clone Repository
 
@@ -113,7 +113,7 @@ nano config/config.env
 
 ---
 
-## 📝 Input Preparation
+## Input Preparation
 
 ### 1) Sample List (`samples_rkn_only.txt`)
 
@@ -149,7 +149,7 @@ Q208_7d_C_2,Q208,7d,Control,2
 
 ---
 
-## 🚀 Execution Guide
+## Execution Guide
 
 Run scripts in numerical order.
 
@@ -221,7 +221,7 @@ The R analysis workflow performs:
 
 ---
 
-## 📌 Typical Outputs
+## Typical Outputs
 
 - QC reports: FastQC results + MultiQC summary
 - Trimmed reads (fastp outputs)
@@ -232,7 +232,7 @@ The R analysis workflow performs:
 
 ---
 
-## 📜 Citation & Credits
+## Citation & Credits
 
 Maintainer: **Yanchen(Ethan) Zheng**  
 Affiliation: **The University of Queensland**
